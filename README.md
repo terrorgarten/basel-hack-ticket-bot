@@ -7,8 +7,29 @@ This is a Python-based Telegram bot that periodically checks the [BaselHack Shop
 - **Automated Checking**: Periodically checks for tickets using an async architecture.
 - **Telegram Integration**: Control the bot and receive status updates via Telegram commands.
 - **Email Notifications**: Get an email notification the moment tickets become available.
+- **Silent Mode**: Toggle off routine notifications to only be alerted on success or failure.
 - **Systemd Service**: Includes a `systemd` service file for easy deployment on a Linux server.
 - **Configurable**: All settings are managed through a `.env` file.
+
+## Telegram Bot Commands
+
+Once the bot is running, you can interact with it in your configured Telegram chat:
+
+-   `/start [interval]`
+    Starts the periodic checks. You can optionally provide an interval in seconds. If not provided, it uses the `CHECK_INTERVAL_SECONDS` from the `.env` file.
+    *Example:* `/start 300` (checks every 5 minutes)
+
+-   `/stop`
+    Stops the periodic checks.
+
+-   `/check`
+    Triggers an immediate, one-time check for ticket availability.
+
+-   `/togglesilent`
+    Turns silent mode ON or OFF. When ON, you will only be notified if tickets are found or if a check fails.
+
+-   `/testemail`
+    Sends a test email to your configured address to verify your settings.
 
 ## Prerequisites
 
@@ -105,20 +126,6 @@ To run the bot as a persistent background service on a Linux server:
     ```bash
     sudo journalctl -u basel-hack-ticket-bot -f
     ```
-
-## Telegram Bot Commands
-
-Once the bot is running, you can interact with it in your configured Telegram chat:
-
--   `/start [interval]`
-    Starts the periodic checks. You can optionally provide an interval in seconds. If not provided, it uses the `CHECK_INTERVAL_SECONDS` from the `.env` file.
-    *Example:* `/start 300` (checks every 5 minutes)
-
--   `/stop`
-    Stops the periodic checks.
-
--   `/check`
-    Triggers an immediate, one-time check for ticket availability.
 
 ---
 *Disclaimer: This bot is for educational purposes. Please use it responsibly and respect the website's terms of service.*
