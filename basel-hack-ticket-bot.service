@@ -1,0 +1,27 @@
+[Unit]
+Description=BaselHack Ticket Checker Telegram Bot
+After=network.target
+
+[Service]
+# IMPORTANT: Replace the User, Group, WorkingDirectory, and ExecStart paths with your actual values.
+User=your_user
+Group=your_group
+
+# The absolute path to the project directory.
+WorkingDirectory=/path/to/your/basel-hack-ticket-bot
+
+# The command to start the bot.
+# Assumes you have a virtual environment named 'venv' in the project directory.
+ExecStart=/path/to/your/basel-hack-ticket-bot/venv/bin/python bot.py
+
+# Restart the service if it fails.
+Restart=always
+RestartSec=10
+
+# Standard output and error logging.
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=basel-hack-ticket-bot
+
+[Install]
+WantedBy=multi-user.target
